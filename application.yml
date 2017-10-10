@@ -11,4 +11,12 @@ eureka.instance:
   preferIpAddress: true  
   
 ribbon:
-  ServerListRefreshInterval: 1000  
+  ServerListRefreshInterval: 1000
+  
+eureka:
+  client:
+    # Disable the client side behaviour in standalone mode
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
