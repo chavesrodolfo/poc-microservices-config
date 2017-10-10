@@ -1,14 +1,38 @@
-#Remote token services
+APP_LOGGING_DIR: /Users/Dodz/dev/github-chavesrodolfo/poc-microservices/logs
+SERVICE_REGISTRY_URL: http://127.0.0.1:8761/eureka/
+RABBITMQ_SERVICE_HOST: localhost
+RABBITMQ_SERVICE_PORT: 5672
+RABBITMQ_SERVICE_USERNAME: guest
+RABBITMQ_SERVICE_PASSWORD: guest
+
 security.oauth2.resource:
   user-info-uri: http://security/user
   load-balanced: true
   preferTokenInfo: false
-
-logging.level:
-  com.netflix.discovery: 'OFF'
   
 eureka.instance:
   preferIpAddress: true  
   
 ribbon:
   ServerListRefreshInterval: 1000
+  
+logging:
+  file: ${APP_LOGGING_DIR}/${spring.application.name}.log
+  level:
+    com.netflix.discovery: 'OFF'
+
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_SERVICE_HOST}
+    port: ${RABBITMQ_SERVICE_PORT}
+    username: ${RABBITMQ_SERVICE_USERNAME}
+    password: ${RABBITMQ_SERVICE_PASSWORD}
+  cloud:
+    config:
+        overrides:
+          APP_LOGGING_DIR: ${APP_LOGGING_DIR}
+          SERVICE_REGISTRY_URL: ${SERVICE_REGISTRY_URL}
+          spring.rabbitmq.host: ${RABBITMQ_SERVICE_HOST}
+          spring.rabbitmq.port: ${RABBITMQ_SERVICE_PORT}
+          spring.rabbitmq.username: ${RABBITMQ_SERVICE_USERNAME}
+          spring.rabbitmq.password: ${RABBITMQ_SERVICE_PASSWORD}
