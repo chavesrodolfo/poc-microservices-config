@@ -1,0 +1,27 @@
+logging:
+  file: ${APP_LOGGING_DIR}/${spring.application.name}.log
+  level:
+    com.netflix.discovery: 'OFF'
+
+# eureka.client.healthcheck.enabled=true should only be set in application.yml
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: ${SERVICE_REGISTRY_URL}
+
+# Integrating rabbitmq for turbine stream and push refresh config
+# Being overrided by config server
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_SERVICE_HOST}
+    port: ${RABBITMQ_SERVICE_PORT}
+    username: ${RABBITMQ_SERVICE_USERNAME}
+    password: ${RABBITMQ_SERVICE_PASSWORD}
+  sleuth:
+    sampler:
+      # Recording all spans for demo
+      percentage: 1.0
