@@ -1,0 +1,14 @@
+#Remote token services
+security.oauth2.resource:
+  user-info-uri: http://security/user
+  load-balanced: true
+  preferTokenInfo: false
+
+logging.level:
+  com.netflix.discovery: 'OFF'
+  
+eureka.instance:
+  preferIpAddress: true  
+  
+ribbon:
+  ServerListRefreshInterval: 1000  
